@@ -4,7 +4,7 @@
   "description": "MongoDB milestone snapshot database adapter for ShareDB",
   "main": "lib/index.js",
   "dependencies": {
-    "mongodb": "^2.1.2",
+    "mongodb": "^2.2.36",
     "sharedb": "git://github.com/reedsy/sharedb#milestone-snapshots"
   },
   "devDependencies": {

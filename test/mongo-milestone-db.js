@@ -102,6 +102,10 @@ describe('MongoMilestoneDB', () => {
         });
       });
     });
+
+    it('defaults to an interval of 1000', () => {
+      expect(db.interval).to.be(1000);
+    });
   });
 
   describe('indexing disabled', () => {
@@ -217,6 +221,24 @@ describe('MongoMilestoneDB', () => {
         expect(error).to.be.ok();
         done();
       });
+    });
+  });
+
+  describe('overriding the interval', () => {
+    let db;
+
+    beforeEach(() => {
+      const options = { interval: 100 };
+      db = new MongoMilestoneDB(MONGO_URL, options);
+      return db._mongo.then(mongo => mongo.dropDatabase());
+    });
+
+    afterEach((done) => {
+      db.close(done);
+    });
+
+    it('has its interval overridden', () => {
+      expect(db.interval).to.be(100);
     });
   });
 });
